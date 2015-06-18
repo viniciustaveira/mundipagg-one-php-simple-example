@@ -1,0 +1,62 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "05c03a88a0c0bae5671a41d39b203cda",
+    "packages": [
+        {
+            "name": "mundipagg/mundipagg-one-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mundipagg/mundipagg-one-php.git",
+                "reference": "f6089d6b9674b7c4f0ec41d71c57db8f8ea9027c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mundipagg/mundipagg-one-php/zipball/f6089d6b9674b7c4f0ec41d71c57db8f8ea9027c",
+                "reference": "f6089d6b9674b7c4f0ec41d71c57db8f8ea9027c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MundiPagg\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "MundiPaggg One PHP Library",
+            "homepage": "http://mundipagg.com",
+            "keywords": [
+                "Pagamento",
+                "gateway",
+                "mundipagg"
+            ],
+            "time": "2015-06-18 01:45:54"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "mundipagg/mundipagg-one-php": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

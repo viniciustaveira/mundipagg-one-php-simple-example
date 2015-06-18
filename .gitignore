@@ -19,6 +19,7 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+vendor/
 
 # Windows image file caches
 Thumbs.db
