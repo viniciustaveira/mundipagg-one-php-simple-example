@@ -15,13 +15,8 @@
             max-width: 350px;
             margin: 50px auto;
         }
-        form {
-            margin: 30px;
-        }
         input {
-            width: 200px;
             margin: 10px auto;
-            display: block;
         }
     </style>
 
@@ -31,10 +26,14 @@
             <img src="img/logo-mundi.png"><br><br>
         </div>
 
+        <div class="alert alert-success"><strong>Parabéns!</strong> Transação autorizada com sucesso =)</div>
+
+        <div class="alert alert-danger"><strong>Oops!</strong> Transação não foi autorizada =(</div>
+
         <div class="card-wrapper"></div>
 
         <div class="form-container active">
-            <form action="">
+            <form>
                 <input class="form-control" placeholder="Número do cartão" required="required" type="text" name="number">
                 <input class="form-control" placeholder="Nome presente no cartão" required="required" type="text" name="name">
                 <input class="form-control" placeholder="Validade do cartão" required="required" type="text" name="expiry">
