@@ -40,7 +40,7 @@ try
         ->setPaymentMethodCode(\MundiPagg\One\DataContract\Enum\PaymentMethodEnum::SIMULATOR)
         ->setAmountInCents(1000)
         ->getCreditCard()
-            ->setCreditCardBrand(\MundiPagg\One\DataContract\Enum\CreditCardBrandEnum::MASTERCARD)
+            ->setCreditCardBrand(\MundiPagg\One\Helper\CreditCardHelper::getBrandByNumber($_POST['number']))
             ->setCreditCardNumber($_POST['number'])
             ->setExpMonth($expMonth)
             ->setExpYear($expYear)
