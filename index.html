@@ -26,9 +26,9 @@
             <img src="img/logo-mundi.png"><br><br>
         </div>
 
-        <div class="alert alert-success"><strong>Parabéns!</strong> Transação autorizada com sucesso =)</div>
+        <div class="alert alert-success" style="display: none"><strong>Parabéns!</strong> <span id="alert-success-message"></span></div>
 
-        <div class="alert alert-danger"><strong>Oops!</strong> Transação não foi autorizada =(</div>
+        <div class="alert alert-danger" style="display: none"><strong>Oops!</strong> <span id="alert-error-message"></span></div>
 
         <div class="card-wrapper"></div>
 
@@ -57,6 +57,26 @@
                 // all of the other options from above
             });
 
+            $("form").on("submit", function(event){
+
+                $(".alert").hide();
+                $("input[type='submit']").attr("disabled", "disabled");
+
+                $.ajax({
+                    url: "mundipagg.php",
+                    method: "POST",
+                    data: $("form").serialize(),
+                    dataType: "json"
+                }).done(function(response){
+                    $("#alert-success-message").html(response.message).parent().show();
+                }).error(function(jqXHR){
+                    $("#alert-error-message").html(jqXHR.responseJSON.message).parent().show();
+                }).always(function(){
+                    $("input[type='submit']").removeAttr("disabled");
+                });
+
+                event.preventDefault();
+            });
         });
     </script>
 </body>
