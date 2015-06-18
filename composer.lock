@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mundipagg/mundipagg-one-php.git",
-                "reference": "f6089d6b9674b7c4f0ec41d71c57db8f8ea9027c"
+                "reference": "edab4a3ff427bb74b61212b2cd206c4470f4a040"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mundipagg/mundipagg-one-php/zipball/f6089d6b9674b7c4f0ec41d71c57db8f8ea9027c",
-                "reference": "f6089d6b9674b7c4f0ec41d71c57db8f8ea9027c",
+                "url": "https://api.github.com/repos/mundipagg/mundipagg-one-php/zipball/edab4a3ff427bb74b61212b2cd206c4470f4a040",
+                "reference": "edab4a3ff427bb74b61212b2cd206c4470f4a040",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 "gateway",
                 "mundipagg"
             ],
-            "time": "2015-06-18 01:45:54"
+            "time": "2015-06-18 19:00:51"
         }
     ],
     "packages-dev": [],
