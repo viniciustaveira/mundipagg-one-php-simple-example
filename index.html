@@ -2,10 +2,63 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="initial-scale=1">
+    <title>MundiPagg One PHP - Simple Integration Example</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon-mundi.ico">
 </head>
 <body>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <style>
+        .demo-container {
+            width: 100%;
+            max-width: 350px;
+            margin: 50px auto;
+        }
+        form {
+            margin: 30px;
+        }
+        input {
+            width: 200px;
+            margin: 10px auto;
+            display: block;
+        }
+    </style>
+
+    <div class="demo-container">
+
+        <div class="text-center">
+            <img src="img/logo-mundi.png"><br><br>
+        </div>
+
+        <div class="card-wrapper"></div>
+
+        <div class="form-container active">
+            <form action="">
+                <input class="form-control" placeholder="Número do cartão" type="text" name="number">
+                <input class="form-control" placeholder="Nome presente no cartão" type="text" name="name">
+                <input class="form-control" placeholder="Validade do cartão" type="text" name="expiry">
+                <input class="form-control" placeholder="Código de segurança" type="text" name="cvc">
+                <input class="btn btn-success btn-block" type="submit">
+            </form>
+        </div>
+    </div>
 
     <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.card.js"></script>
+    <script>
+        $(function(){
+
+            $('form').card({
+                // a selector or DOM element for the container
+                // where you want the card to appear
+                container: '.card-wrapper', // *required*
+
+                // all of the other options from above
+            });
+
+        });
+    </script>
 </body>
 </html>
