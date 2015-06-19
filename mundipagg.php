@@ -2,25 +2,22 @@
 
 try
 {
-    // Validação muito simples dos dados recebidos
-    // OBS.: NÃO DEIXE ASSIM EM PRODUÇÃO
-    if ($_SERVER['REQUEST_METHOD'] != "POST" || empty($_POST['number']) || empty($_POST['name']) || empty($_POST['expiry']) || empty($_POST['cvc'])) {
+    // Carrega dependências
+    require_once(dirname(__FILE__) . '/vendor/autoload.php');
+
+    // Cria um objeto de cartão de crédito a partir dos dados recebidos
+    $creditCard = \MundiPagg\One\Helper\CreditCardHelper::createCreditCard($_POST['number'], $_POST['name'], $_POST['expiry'], $_POST['cvc']);
+
+    // Validação dos dados do cartão
+    if (!$creditCard) {
         header('Content-Type: application/json');
         http_response_code(400);
         print json_encode(array("message" => "Campos obrigatórios inválidos."));
         exit;
     }
 
-    // Separa mes e ano da data de validade do cartão
-    $expiryParts = explode('/', $_POST['expiry']);
-    $expMonth = @$expiryParts[0];
-    $expYear = @$expiryParts[1];
-
-    // Carrega dependências
-    require_once(dirname(__FILE__) . '/vendor/autoload.php');
-
     // Define o ambiente utilizado (produção ou homologação)
-    \MundiPagg\ApiClient::setEnvironment(\MundiPagg\One\DataContract\Enum\ApiEnvironmentEnum::STAGING);
+    \MundiPagg\ApiClient::setEnvironment(\MundiPagg\One\DataContract\Enum\ApiEnvironmentEnum::INSPECTOR);
 
     // Define a chave da loja
     \MundiPagg\ApiClient::setMerchantKey("be43cb17-3637-44d0-a45e-d68aaee29f47");
@@ -31,14 +28,8 @@ try
     // Define dados do pedido
     $createSaleRequest->addCreditCardTransaction()
         ->setPaymentMethodCode(\MundiPagg\One\DataContract\Enum\PaymentMethodEnum::SIMULATOR)
-        ->setAmountInCents(1000)
-        ->getCreditCard()
-            ->setCreditCardBrand(\MundiPagg\One\Helper\CreditCardHelper::getBrandByNumber($_POST['number']))
-            ->setCreditCardNumber($_POST['number'])
-            ->setExpMonth($expMonth)
-            ->setExpYear($expYear)
-            ->setHolderName($_POST['name'])
-            ->setSecurityCode($_POST['cvc'])
+        ->setAmountInCents(1099)
+        ->setCreditCard($creditCard)
         ;
 
     // Cria um objeto ApiClient
@@ -48,8 +39,8 @@ try
     $createSaleResponse = $apiClient->createSale($createSaleRequest);
 
     // Mapeia resposta
-    $httpStatusCode = $createSaleResponse->CreditCardTransactionResultCollection[0]->Success ? 201 : 401;
-    $response = array("message" => $createSaleResponse->CreditCardTransactionResultCollection[0]->AcquirerMessage);
+    $httpStatusCode = $createSaleResponse->isSuccess() ? 201 : 401;
+    $response = array("message" => $createSaleResponse->getData()->CreditCardTransactionResultCollection[0]->AcquirerMessage);
 }
 catch (\MundiPagg\One\DataContract\Report\ApiError $error)
 {

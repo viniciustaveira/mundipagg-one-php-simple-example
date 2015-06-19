@@ -44,3 +44,6 @@ $RECYCLE.BIN/
 
 # mysql workbench
 **.bak
+
+# Composer
+composer.lock
