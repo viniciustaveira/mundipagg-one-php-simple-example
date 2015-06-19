@@ -20,20 +20,13 @@ try
     require_once(dirname(__FILE__) . '/vendor/autoload.php');
 
     // Define o ambiente utilizado (produção ou homologação)
-    \MundiPagg\ApiClient::setEnvironment(\MundiPagg\One\DataContract\Enum\ApiEnvironmentEnum::INSPECTOR);
+    \MundiPagg\ApiClient::setEnvironment(\MundiPagg\One\DataContract\Enum\ApiEnvironmentEnum::STAGING);
 
     // Define a chave da loja
     \MundiPagg\ApiClient::setMerchantKey("be43cb17-3637-44d0-a45e-d68aaee29f47");
 
     // Cria objeto requisição
     $createSaleRequest = new \MundiPagg\One\DataContract\Request\CreateSaleRequest();
-
-    /**
-     * Regras do simulador:
-     * R$ 1.000,00 = Autorizada
-     * R$ 1.050,01 = Timeout
-     * R$ 1.500,00 = Não autorizada
-     */
 
     // Define dados do pedido
     $createSaleRequest->addCreditCardTransaction()
